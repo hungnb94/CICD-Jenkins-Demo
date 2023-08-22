@@ -1,11 +1,7 @@
-FROM --platform=linux/amd64 ubuntu:latest
+FROM ubuntu:20.04
 
 ENV ANDROID_HOME      /opt/android-sdk-linux
-ENV ANDROID_SDK_HOME  ${ANDROID_HOME}
-ENV ANDROID_SDK_ROOT  ${ANDROID_HOME}
-ENV ANDROID_SDK       ${ANDROID_HOME}
 
-ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/tools/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/${SDK_VERSION}"
@@ -14,7 +10,7 @@ ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
 ENV PATH "${PATH}:${ANDROID_HOME}/bin"
 
 RUN apt-get update \
- && apt-get install -y openjdk-11-jdk wget unzip git \
+ && apt-get install -y openjdk-11-jdk wget unzip \
  && apt-get clean
 
 RUN groupadd android && useradd -d /opt/android-sdk-linux -g android android

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#source /opt/tools/android_env.sh
-
 mkdir -p $ANDROID_HOME
 cd $ANDROID_HOME
 
@@ -19,7 +17,6 @@ yes | sdkmanager --licenses
 
 echo "*** Install build tools 30.0.3 ***"
 sdkmanager "platforms;android-30"
-sdkmanager --install "ndk-bundle"
 sdkmanager --install "build-tools;30.0.3"
 
 chmod -R 777 $ANDROID_HOME

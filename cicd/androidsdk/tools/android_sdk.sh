@@ -15,8 +15,4 @@ rm commandlinetools-linux.zip
 echo "*** Automatically accept all SDK licences ***"
 yes | sdkmanager --licenses
 
-echo "*** Install build tools 30.0.3 ***"
-sdkmanager "platforms;android-30"
-sdkmanager --install "build-tools;30.0.3"
-
 chmod -R 777 $ANDROID_HOME

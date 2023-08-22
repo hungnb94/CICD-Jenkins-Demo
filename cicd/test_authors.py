@@ -32,6 +32,8 @@ m_acceptAuthors = ['Amrish Nair <amrish@bio-rithm.com>',
 'Tran Minh Hai <hai@bio-rithm.com>',
 'Trishna Saeharaseelan <trishna@bio-rithm.com>',
 'Tom Li <tom.li@zuhlke.com>',
+'shahzad afridi <shahzadahmadafridi@gmail.com>',
+'Shahzad Afridi (Opriday) <shahzadahmadafridi@gmail.com>'
 ]
 
 m_acceptAuthorsDiffName = {

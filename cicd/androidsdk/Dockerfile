@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 
 ENV ANDROID_HOME      /opt/android-sdk-linux
 
+ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/tools/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/${SDK_VERSION}"

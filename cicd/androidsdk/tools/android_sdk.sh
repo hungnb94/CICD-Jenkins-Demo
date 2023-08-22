@@ -11,18 +11,13 @@ cp -v /opt/tools/*.sh ${ANDROID_HOME}/bin
 
 source /opt/android-sdk-linux/bin/android_env.sh
 
-if [ -f commandlinetools-linux.zip ]
-then
-  echo "Command line tools already bootstrapped. Skipping initial setup"
-else
-  echo "Bootstrapping SDK-Tools"
-  wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O commandlinetools-linux.zip
-  unzip commandlinetools-linux.zip
-  mv cmdline-tools tools
-  mkdir cmdline-tools
-  mv tools cmdline-tools/tools
-  rm commandlinetools-linux.zip
-fi
+echo "Bootstrapping SDK-Tools"
+wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O commandlinetools-linux.zip
+unzip commandlinetools-linux.zip
+mv cmdline-tools tools
+mkdir cmdline-tools
+mv tools cmdline-tools/tools
+rm commandlinetools-linux.zip
 
 echo "Make sure repositories.cfg exists"
 mkdir -p ~/.android/

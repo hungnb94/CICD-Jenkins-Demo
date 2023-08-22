@@ -43,8 +43,8 @@ m_acceptAuthorsDiffName = {
 }
 
 
-lines = subprocess.check_output('git shortlog --summary --numbered --email', shell=True, text=True)
-# lines = open('/tmp/git_authors.txt', 'r').read()
+# lines = subprocess.check_output('git shortlog --summary --numbered --email', shell=True, text=True)
+lines = open('/tmp/git_authors.txt', 'r').read()
 print('lines = {}'.format(lines))
 if (len(lines) == 0):
     assert False, "NOT FOUND ANY AUTHOR"

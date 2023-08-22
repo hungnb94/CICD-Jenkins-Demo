@@ -13,7 +13,7 @@ pipeline {
       }
       steps {
         sh 'git shortlog -s -n --all  --summary --numbered --email  >> /tmp/git_authors.txt'
-        sh 'python3 test_authors/femom_test_authors.py'
+        sh 'python3 cicd/test_authors.py'
       }
     }
 

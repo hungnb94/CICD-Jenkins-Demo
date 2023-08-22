@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /opt/tools/android_env.sh
+#source /opt/tools/android_env.sh
 
 mkdir -p $ANDROID_HOME
 cd $ANDROID_HOME

@@ -3,6 +3,7 @@
 source /opt/tools/android_env.sh
 
 mkdir -p $ANDROID_HOME
+chmod 777 $ANDROID_HOME
 cd $ANDROID_HOME
 
 

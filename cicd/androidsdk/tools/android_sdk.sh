@@ -18,5 +18,6 @@ yes | sdkmanager --licenses
 echo "*** Install Android SDK Platform 33 ***"
 sdkmanager "platforms;android-33"
 sdkmanager "emulator"
+sdkmanager "build-tools;30.0.3"
 
 chmod -R 777 $ANDROID_HOME

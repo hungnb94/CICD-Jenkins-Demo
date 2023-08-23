@@ -11,7 +11,6 @@ mv cmdline-tools tools
 mkdir cmdline-tools
 mv tools cmdline-tools/tools
 rm commandlinetools-linux.zip
-#rm -rf $ANDROID_HOME/tools/bin/sdkmanager
 
 echo "*** Automatically accept all SDK licences ***"
 yes | sdkmanager --licenses
@@ -20,6 +19,7 @@ echo "*** Install Android SDK Platform 33 ***"
 sdkmanager --list | grep "build-tools"
 sdkmanager "platforms;android-33"
 #sdkmanager "emulator"
+source /opt/tools/emulator.sh
 sdkmanager "build-tools;30.0.3"
 
 chmod -R 777 $ANDROID_HOME

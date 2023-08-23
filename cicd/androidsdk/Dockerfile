@@ -16,6 +16,7 @@ RUN apt-get update \
  && apt-get clean
 
 COPY tools /opt/tools
+COPY license /opt/license
 RUN chmod +x /opt/tools/*.sh
 
 RUN /opt/tools/android_sdk.sh

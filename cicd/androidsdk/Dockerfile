@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ubuntu:20.04
+FROM ubuntu:20.04
 
 USER root
 
@@ -19,5 +19,3 @@ COPY tools /opt/tools
 RUN chmod +x /opt/tools/*.sh
 
 RUN /opt/tools/android_sdk.sh
-
-# RUN /opt/tools/entrypoint.sh built-in

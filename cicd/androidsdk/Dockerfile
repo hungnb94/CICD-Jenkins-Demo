@@ -1,9 +1,6 @@
 FROM ubuntu:20.04
 
-ARG TARGETPLATFORM
-RUN echo "I'm building for $TARGETPLATFORM"
 ARG TARGETARCH
-RUN echo "Target arch is: $TARGETARCH"
 
 USER root
 

@@ -17,12 +17,19 @@ RUN apt-get update \
  && apt-get install -y openjdk-11-jdk wget unzip \
  && apt-get clean
 
-RUN apt-get install -y libc6-amd64-cross
-RUN ln -s /usr/x86_64-linux-gnu/lib64/ /lib64
-ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
-
 COPY tools /opt/tools
 COPY license /opt/license
 RUN chmod +x /opt/tools/*.sh
 
-RUN /opt/tools/android_sdk.sh
+# Install Android Commandline-Tools
+RUN /opt/tools/commandline_tools.sh
+
+# Install Android SDK Platform 33
+RUN sdkmanager "platforms;android-33"
+
+# Install Android Emulator
+RUN /opt/tools/emulator.sh
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
+
+# Install Android SDK Build-Tools
+RUN sdkmanager "build-tools;30.0.3"

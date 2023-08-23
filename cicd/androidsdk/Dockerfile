@@ -20,6 +20,9 @@ RUN apt-get update \
  && apt-get install -y openjdk-11-jdk wget unzip \
  && apt-get clean
 
+RUN apt-get install -y libc6-amd64-cross libgcc1-amd64-cross && ln -s /usr/x86_64-linux-gnu/lib64/ /lib64
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
+
 COPY tools /opt/tools
 COPY license /opt/license
 RUN chmod +x /opt/tools/*.sh

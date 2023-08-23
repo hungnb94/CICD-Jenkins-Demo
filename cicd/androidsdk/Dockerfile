@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
 
+ARG TARGETPLATFORM
+RUN echo "I'm building for $TARGETPLATFORM"
+
 USER root
 
 ENV ANDROID_HOME      /opt/android-sdk-linux

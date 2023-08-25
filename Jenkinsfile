@@ -36,7 +36,7 @@ pipeline {
           dir 'cicd/androidsdk'
           args '--network bridge'
           reuseNode true
-          additionalBuildArgs  '--build-arg version=7.5.1'
+          additionalBuildArgs  '--build-arg GRADLE_VERSION=7.5.1'
         }
       }
       steps {
@@ -56,6 +56,7 @@ pipeline {
           sh 'ls -R app/build/outputs/apk'
           stash name: "apk", includes: 'app/build/outputs/apk/**', allowEmpty: true
           archiveArtifacts artifacts: 'app/build/outputs/apk/**', fingerprint: true
+          sh 'find / -name 'gradle-file-watching*.jar' 2>/dev/null'
       }
     }
   }

@@ -11,7 +11,9 @@ pipeline {
       steps {
         script {
           def props = readProperties file: "gradle/wrapper/gradle-wrapper.properties"
-          echo "Gradle version: ${props.distributionUrl}"
+          echo "Gradle url: ${props.distributionUrl}"
+          echo "Distribution base: ${props.distributionBase}"
+          echo "Zip store base: ${props.zipStoreBase}"
         }
       }
     }

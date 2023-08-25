@@ -7,6 +7,15 @@ pipeline {
   }
 
   stages {
+    stage('Read gradle version') {
+      steps {
+        script {
+          def props = readProperties file: "gradle/wrapper/gradle-wrapper.properties"
+          echo "Gradle version: ${props.distributionUrl}"
+        }
+      }
+    }
+
     stage('Test authors') {
       agent {
         dockerfile {
@@ -27,6 +36,7 @@ pipeline {
           dir 'cicd/androidsdk'
           args '--network bridge'
           reuseNode true
+          additionalBuildArgs  '--build-arg version=7.5.1'
         }
       }
       steps {

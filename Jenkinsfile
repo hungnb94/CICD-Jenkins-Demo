@@ -27,6 +27,7 @@ pipeline {
         }
       }
       steps {
+        print "Gradle version: $GRADLE_VERSION\n"
         sh 'git shortlog -s -n --all  --summary --numbered --email  >> /tmp/git_authors.txt'
         sh 'python3 cicd/test_authors.py'
       }

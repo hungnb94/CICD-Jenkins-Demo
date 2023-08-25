@@ -38,7 +38,7 @@ RUN sdkmanager "build-tools;30.0.3"
 
 # Install gradle
 ENV GRADLE_HOME     /opt/gradle
-ARG GRADLE_VERSION=7.5.1
+ARG GRADLE_VERSION=8.3
 
 ENV PATH "${PATH}:${GRADLE_HOME}/bin"
 

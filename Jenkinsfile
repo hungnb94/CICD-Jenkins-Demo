@@ -11,9 +11,9 @@ pipeline {
       steps {
         script {
           def props = readProperties file: "gradle/wrapper/gradle-wrapper.properties"
-          echo "Gradle url: ${props.distributionUrl}"
-          echo "Distribution base: ${props.distributionBase}"
-          echo "Zip store base: ${props.zipStoreBase}"
+          def output=${props.distributionUrl#*-}
+          GRADLE_VERSION=${output%-*}
+          echo "Gradle version: $GRADLE_VERSION"
         }
       }
     }
@@ -38,7 +38,7 @@ pipeline {
           dir 'cicd/androidsdk'
           args '--network bridge'
           reuseNode true
-          additionalBuildArgs  '--build-arg GRADLE_VERSION=7.5.1'
+          additionalBuildArgs  '--build-arg GRADLE_VERSION=$GRADLE_VERSION'
         }
       }
       steps {
@@ -51,6 +51,7 @@ pipeline {
           dir 'cicd/androidsdk'
           args '--network bridge'
           reuseNode true
+          additionalBuildArgs  '--build-arg GRADLE_VERSION=$GRADLE_VERSION'
         }
       }
       steps {

@@ -10,10 +10,9 @@ pipeline {
     stage('Read gradle version') {
       steps {
         script {
-          def props = readProperties file: "gradle/wrapper/gradle-wrapper.properties"
-          def url="${props.distributionUrl}"
-          output=${url#*-}
-          GRADLE_VERSION=${output%-*}
+          def gradleProps = readProperties file: "gradle/wrapper/gradle-wrapper.properties"
+          def url="${gradleProps.distributionUrl}"
+          GRADLE_VERSION = url.substring(url.indexOf("-") + 1, url.lastIndexOf("-"))
           echo "Gradle version: $GRADLE_VERSION"
         }
       }

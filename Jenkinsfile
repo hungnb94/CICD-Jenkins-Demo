@@ -39,7 +39,7 @@ pipeline {
           dir 'cicd/androidsdk'
           args '--network bridge'
           reuseNode true
-          additionalBuildArgs  '--build-arg GRADLE_VERSION=$GRADLE_VERSION'
+          additionalBuildArgs "--build-arg GRADLE_VERSION=$GRADLE_VERSION"
         }
       }
       steps {

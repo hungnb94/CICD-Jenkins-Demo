@@ -42,7 +42,7 @@ ARG GRADLE_VERSION=8.3
 
 ENV PATH "${PATH}:${GRADLE_HOME}/bin"
 
-echo "Download gradle $GRADLE_VERSION"
+RUN echo "Download gradle $GRADLE_VERSION"
 RUN wget -q "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -O gradle.zip \
  && unzip gradle.zip \
  && rm gradle.zip \

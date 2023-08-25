@@ -11,7 +11,8 @@ pipeline {
       steps {
         script {
           def props = readProperties file: "gradle/wrapper/gradle-wrapper.properties"
-          def output=${props.distributionUrl#*-}
+          def url="${props.distributionUrl}"
+          output=${url#*-}
           GRADLE_VERSION=${output%-*}
           echo "Gradle version: $GRADLE_VERSION"
         }

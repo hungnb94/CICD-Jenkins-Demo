@@ -37,6 +37,7 @@ pipeline {
           dir 'cicd/androidsdk'
           reuseNode true
           additionalBuildArgs "--build-arg GRADLE_VERSION=$GRADLE_VERSION"
+          args "-v \"$HOME/.gradle\":/root/.gradle"
         }
       }
       steps {
@@ -49,6 +50,7 @@ pipeline {
           dir 'cicd/androidsdk'
           reuseNode true
           additionalBuildArgs "--build-arg GRADLE_VERSION=$GRADLE_VERSION"
+          args "-v \"$HOME/.gradle\":/root/.gradle"
         }
       }
       steps {

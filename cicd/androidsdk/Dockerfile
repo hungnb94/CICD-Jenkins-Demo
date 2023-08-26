@@ -34,16 +34,3 @@ ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
 
 # Install Android SDK Build-Tools
 RUN sdkmanager "build-tools;30.0.3"
-
-
-# Install gradle
-ENV GRADLE_HOME     /opt/gradle
-ARG GRADLE_VERSION=8.3
-
-ENV PATH "${PATH}:${GRADLE_HOME}/bin"
-
-RUN echo "Download gradle $GRADLE_VERSION"
-RUN wget -q "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -O gradle.zip \
- && unzip gradle.zip \
- && rm gradle.zip \
- && mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/"

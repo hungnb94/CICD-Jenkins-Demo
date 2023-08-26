@@ -7,16 +7,6 @@ pipeline {
   }
 
   stages {
-    stage('Read gradle version') {
-      steps {
-        script {
-          def gradleProps = readProperties file: "gradle/wrapper/gradle-wrapper.properties"
-          def url="${gradleProps.distributionUrl}"
-          GRADLE_VERSION = url.substring(url.indexOf("-") + 1, url.lastIndexOf("-"))
-        }
-      }
-    }
-
     stage('Test authors') {
       agent {
         dockerfile {
@@ -36,12 +26,11 @@ pipeline {
         dockerfile {
           dir 'cicd/androidsdk'
           reuseNode true
-          additionalBuildArgs "--build-arg GRADLE_VERSION=$GRADLE_VERSION"
           args "-v \"$HOME/.gradle\":/root/.gradle"
         }
       }
       steps {
-          sh 'gradle test'
+          sh './gradlew test'
       }
     }
     stage('Build') {
@@ -49,12 +38,11 @@ pipeline {
         dockerfile {
           dir 'cicd/androidsdk'
           reuseNode true
-          additionalBuildArgs "--build-arg GRADLE_VERSION=$GRADLE_VERSION"
           args "-v \"$HOME/.gradle\":/root/.gradle"
         }
       }
       steps {
-          sh 'gradle assembleRelease'
+          sh './gradlew assembleRelease'
           sh 'ls -R app/build/outputs/apk'
           stash name: "apk", includes: 'app/build/outputs/apk/**', allowEmpty: true
           archiveArtifacts artifacts: 'app/build/outputs/apk/**', fingerprint: true

@@ -33,6 +33,23 @@ pipeline {
           sh './gradlew test'
       }
     }
+
+    stage('Integration test') {
+      environment {
+        ANDROID_ADB_SERVER_ADDRESS = "host.docker.internal"
+      }
+      agent {
+        dockerfile {
+          dir 'cicd/androidsdk'
+          reuseNode true
+          args "-v \"$HOME/.gradle\":/root/.gradle"
+        }
+      }
+      steps {
+          sh './gradlew connectedAndroidTest'
+      }
+    }
+
     stage('Build') {
       agent {
         dockerfile {

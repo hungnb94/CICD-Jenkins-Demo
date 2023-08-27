@@ -45,6 +45,7 @@ pipeline {
         }
       }
       steps {
+          sh 'adb devices'
           sh './gradlew connectedAndroidTest'
       }
     }

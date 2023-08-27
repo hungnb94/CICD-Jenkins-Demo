@@ -34,3 +34,5 @@ ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
 
 # Install Android SDK Build-Tools
 RUN sdkmanager "build-tools;30.0.3"
+
+RUN keytool -genkey -alias replserver -keyalg RSA -keystore debug.keystore -dname "CN=Mark Smith, OU=JavaSoft, O=Sun, L=Cupertino, S=California, C=US" -storepass password -keypass password

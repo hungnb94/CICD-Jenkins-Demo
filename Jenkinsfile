@@ -60,6 +60,7 @@ pipeline {
     stage("Appium Test") {
       environment {
         ANDROID_ADB_SERVER_ADDRESS = "host.docker.internal"
+        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
       }
       agent {
         dockerfile {

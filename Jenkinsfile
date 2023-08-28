@@ -55,6 +55,25 @@ pipeline {
       }
     }
 
+    stage("Mock Test Without Real Device") {
+      environment {
+        ANDROID_ADB_SERVER_ADDRESS = "host.docker.internal"
+      }
+      agent {
+        docker {
+          image 'appium/appium'
+          reuseNode true
+        }
+      }
+      steps {
+        sh "./gradlew assembleDebug"
+        sh "adb install -r app/build/outputs/apk/debug/app-debug.apk"
+        sh "cd appiumTest"
+        sh "npm install"
+        sh "npm run test-ci-cd"
+      }
+    }
+
     stage('Build') {
       agent {
         dockerfile {

@@ -6,7 +6,7 @@ pipeline {
     timestamps()
   }
   environment {
-    APPLICATION_ID = "com.example.test123"
+    APP_ID = "com.example.test123"
   }
 
   stages {
@@ -50,10 +50,13 @@ pipeline {
         }
       }
       steps {
-          sh 'adb devices'
-          sh './gradlew assembleAndroidTest'
-          sh "adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-          sh "adb shell am instrument -w \"${APPLICATION_ID}.test/androidx.test.runner.AndroidJUnitRunner\""
+          sh "adb devices"
+          sh "./gradlew assembleDebug"
+          sh "adb install -r -d app/build/outputs/apk/debug/app-debug.apk"
+          sh "adb shell pm clear $APP_ID"
+          sh "./gradlew assembleAndroidTest"
+          sh "adb install -r -d app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+          sh "adb shell am instrument -w \"${APP_ID}.test/androidx.test.runner.AndroidJUnitRunner\""
       }
     }
 

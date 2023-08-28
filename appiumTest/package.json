@@ -1,0 +1,36 @@
+{
+  "name": "appium-tests",
+  "version": "1.0.0",
+  "description": "tests using webdriverio",
+  "main": "index.js",
+  "scripts": {
+    "test-emulator": "mocha --fgrep 'emulator-device'",
+    "test-ci-cd": "npx mocha --recursive false ./tests/specs/login_screen.spec.ts",
+    "clean": "rm -rf node_modules && rm -f package-lock.json && npm install"
+  },
+  "mocha": {
+    "extension": "ts",
+    "recursive": true,
+    "require": "ts-node/register",
+    "spec": "tests",
+    "timeout": "1800000"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "@types/nodemailer": "^6.4.4",
+    "@types/semver": "^7.3.13",
+    "appium": "^1.22.3",
+    "appium-doctor": "^1.16.0",
+    "assert": "^2.0.0",
+    "axios": "^0.27.2",
+    "chai": "^4.1.2",
+    "dotenv": "^16.0.0",
+    "mocha": "^8.0.1",
+    "nodemailer": "^6.7.5",
+    "semver": "^7.3.8",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3",
+    "webdriverio": "^7.2.0"
+  }
+}

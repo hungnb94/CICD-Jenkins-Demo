@@ -5,6 +5,9 @@ pipeline {
   options {
     timestamps()
   }
+  environment {
+    APPLICATION_ID = "com.example.test123"
+  }
 
   stages {
     stage('Test authors') {
@@ -46,8 +49,9 @@ pipeline {
       }
       steps {
           sh 'adb devices'
-          sh 'adb connect 127.0.0.1'
-          sh './gradlew connectedAndroidTest'
+          sh './gradlew assembleAndroidTest'
+          sh "adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+          sh "adb shell am instrument -w $APPLICATION_ID.test/androidx.test.runner.AndroidJUnitRunner"
       }
     }
 

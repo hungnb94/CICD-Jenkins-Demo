@@ -18,7 +18,7 @@ const androidCaps: DesiredCapabilities = {
 export const androidOptions: RemoteOptions = {
     capabilities: androidCaps,
     path: '/wd/hub',
-    hostname: process.env.APPIUM_HOST || 'localhost',
+    hostname: process.env.APPIUM_HOST || 'host.docker.internal',
     port: Number(process.env.APPIUM_PORT) || 4723,
     logLevel: 'info'
 }

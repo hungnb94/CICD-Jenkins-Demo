@@ -49,9 +49,8 @@ pipeline {
       }
       steps {
           sh 'adb devices'
-          //sh './gradlew assembleAndroidTest'
-          //sh "adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-          sh "./gradlew installAndroidTest"
+          sh './gradlew assembleAndroidTest'
+          sh "adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
           sh "adb shell am instrument -w \"$APPLICATION_ID.test/androidx.test.runner.AndroidJUnitRunner\""
       }
     }

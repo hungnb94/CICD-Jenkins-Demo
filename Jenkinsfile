@@ -57,7 +57,7 @@ pipeline {
       }
     }
 
-    stage("Mock Test Without Real Device") {
+    stage("Appium Test") {
       environment {
         ANDROID_ADB_SERVER_ADDRESS = "host.docker.internal"
       }

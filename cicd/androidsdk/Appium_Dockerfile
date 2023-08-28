@@ -40,4 +40,3 @@ RUN sdkmanager "build-tools;30.0.3"
 RUN curl -s https://deb.nodesource.com/setup_16.x | bash
 RUN apt install nodejs -y
 RUN npm i --location=global appium
-RUN appium

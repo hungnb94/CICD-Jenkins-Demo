@@ -72,8 +72,7 @@ pipeline {
       steps {
         sh "./gradlew assembleDebug"
         sh "adb install -r app/build/outputs/apk/debug/app-debug.apk"
-        sh "cd appiumTest && npm install"
-        sh "npm run test-ci-cd"
+        sh "cd appiumTest && npm install && npm run test-ci-cd"
       }
     }
 

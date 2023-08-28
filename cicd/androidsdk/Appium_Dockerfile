@@ -1,0 +1,43 @@
+FROM ubuntu:22.04
+
+ARG TARGETARCH
+
+USER root
+
+# Install Android SDK
+ENV ANDROID_HOME      /opt/android-sdk-linux
+
+ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
+ENV PATH "${PATH}:${ANDROID_HOME}/tools/bin"
+ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/30.0.3"
+ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
+ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
+ENV PATH "${PATH}:${ANDROID_HOME}/bin"
+
+RUN apt-get update
+RUN apt-get install -y openjdk-11-jdk
+RUN apt-get install -y wget
+RUN apt-get install -y unzip
+RUN apt-get install -y curl
+
+COPY tools /opt/tools
+COPY license /opt/license
+RUN chmod +x /opt/tools/*.sh
+
+# Install Android Commandline-Tools
+RUN /opt/tools/commandline_tools.sh
+
+# Install Android SDK Platform 33
+RUN sdkmanager "platforms;android-33"
+
+# Install Android Emulator
+RUN /opt/tools/emulator.sh
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
+
+# Install Android SDK Build-Tools
+RUN sdkmanager "build-tools;30.0.3"
+
+RUN curl -s https://deb.nodesource.com/setup_16.x | bash
+RUN apt install nodejs -y
+RUN npm i --location=global appium
+RUN appium

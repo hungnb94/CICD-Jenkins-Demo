@@ -27,6 +27,7 @@ pipeline {
     stage('Local unit test') {
       agent {
         dockerfile {
+          filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
           args "-v \"$HOME/.gradle\":/root/.gradle"
@@ -43,6 +44,7 @@ pipeline {
       }
       agent {
         dockerfile {
+          filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
         }
@@ -60,8 +62,9 @@ pipeline {
         ANDROID_ADB_SERVER_ADDRESS = "host.docker.internal"
       }
       agent {
-        docker {
-          image 'appium/appium'
+        dockerfile {
+          filename 'Appium_Dockerfile'
+          dir 'cicd/androidsdk'
           reuseNode true
         }
       }
@@ -77,6 +80,7 @@ pipeline {
     stage('Build') {
       agent {
         dockerfile {
+          filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
           args "-v \"$HOME/.gradle\":/root/.gradle"

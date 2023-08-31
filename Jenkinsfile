@@ -77,7 +77,7 @@ pipeline {
         }
       }
       steps {
-        sh "cd appiumTest && npm install && npm run test-ci-cd"
+        sh "cd appiumTest && yarn install --frozen-lockfile && npm run test-ci-cd"
       }
     }
 

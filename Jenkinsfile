@@ -16,7 +16,7 @@ pipeline {
           filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle -v \"$PWD\":/application"
+          args "-v $HOME/.gradle:/root/.gradle -v $HOME/cicd/android_01:/application"
         }
       }
       steps {
@@ -33,7 +33,7 @@ pipeline {
           filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle -v \"$PWD\":/application"
+          args "-v $HOME/.gradle:/root/.gradle -v $HOME/cicd/android_01:/application"
         }
       }
       steps {
@@ -57,7 +57,7 @@ pipeline {
           filename 'Appium_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle -v \"$PWD\":/application"
+          args "-v $HOME/.gradle:/root/.gradle -v $HOME/cicd/android_01:/application"
         }
       }
       steps {
@@ -73,7 +73,7 @@ pipeline {
           filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle -v \"$PWD\":/application"
+          args "-v $HOME/.gradle:/root/.gradle -v $HOME/cicd/android_01:/application"
         }
       }
       steps {

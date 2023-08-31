@@ -24,8 +24,6 @@ pipeline {
       }
       steps {
           sh "adb devices"
-          sh "./gradlew"
-          sh "find / -name 'gradle*.zip' 2>/dev/null"
           sh "./gradlew assembleDebug"
           sh "adb install -r -d app/build/outputs/apk/debug/app-debug.apk"
           sh "adb shell pm clear $APP_ID"

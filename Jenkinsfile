@@ -7,6 +7,7 @@ pipeline {
   }
   environment {
     APP_ID = "com.example.test123"
+    USER_HOME = "$HOME"
   }
 
   stages {
@@ -20,14 +21,15 @@ pipeline {
           filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/home/.gradle"
+          args "-v $USER_HOME/.gradle:/home/.gradle"
         }
       }
       steps {
+          sh "echo $USER_HOME"
           sh "echo $HOME"
           sh "adb devices"
           sh "./gradlew assembleDebug"
-          sh "find / -name \"gradle-7.6*.zip\" 2>/dev/null"
+          sh "find / -name \"gradle*.zip\" 2>/dev/null"
           sh "adb install -r -d app/build/outputs/apk/debug/app-debug.apk"
           sh "adb shell pm clear $APP_ID"
       }

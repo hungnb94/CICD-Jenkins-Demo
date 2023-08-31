@@ -13,20 +13,21 @@ pipeline {
     stage('Install debug app') {
       environment {
         ANDROID_ADB_SERVER_ADDRESS = "host.docker.internal"
+        HOME = "home"
       }
       agent {
         dockerfile {
           filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle"
+          args "-v $HOME/.gradle:/home/.gradle"
         }
       }
       steps {
-          sh "whoami"
           sh "echo $HOME"
           sh "adb devices"
           sh "./gradlew assembleDebug"
+          sh "find / -name \"gradle-7.6*.zip\" 2>/dev/null"
           sh "adb install -r -d app/build/outputs/apk/debug/app-debug.apk"
           sh "adb shell pm clear $APP_ID"
       }

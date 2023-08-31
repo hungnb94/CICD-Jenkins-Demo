@@ -77,6 +77,7 @@ pipeline {
         }
       }
       steps {
+        sh "yarn cache dir"
         sh "cd appiumTest && yarn install --frozen-lockfile && npm run test-ci-cd"
       }
     }

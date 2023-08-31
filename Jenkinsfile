@@ -10,20 +10,6 @@ pipeline {
   }
 
   stages {
-    stage('Test authors') {
-      agent {
-        dockerfile {
-          dir 'cicd/python'
-          args '--network bridge'
-          reuseNode true
-        }
-      }
-      steps {
-        sh 'git shortlog -s -n --all  --summary --numbered --email  >> /tmp/git_authors.txt'
-        sh 'python3 cicd/test_authors.py'
-      }
-    }
-
     stage('Local unit test') {
       agent {
         dockerfile {

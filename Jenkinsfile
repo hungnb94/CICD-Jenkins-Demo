@@ -23,6 +23,7 @@ pipeline {
         }
       }
       steps {
+          sh "ls /root/.gradle"
           sh "adb devices"
           sh "./gradlew assembleDebug"
           sh "adb install -r -d app/build/outputs/apk/debug/app-debug.apk"
@@ -77,6 +78,8 @@ pipeline {
         }
       }
       steps {
+        sh "ls /.cache/yarn"
+        sh "ls /.cache/yarn/v6"
         sh "yarn cache dir"
         sh "cd appiumTest && yarn install --frozen-lockfile && yarn test-ci-cd"
       }

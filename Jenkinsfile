@@ -19,7 +19,7 @@ pipeline {
           filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle"
+          args "-v \"$HOME/.gradle\":/root/.gradle"
         }
       }
       steps {

@@ -19,11 +19,12 @@ pipeline {
           filename 'SDK_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v \"$HOME/.gradle\":/root/.gradle"
+          args "-v $HOME/.gradle:/root/.gradle"
         }
       }
       steps {
-          sh "ls /root/.gradle"
+          sh "whoami"
+          sh "echo $HOME"
           sh "adb devices"
           sh "./gradlew assembleDebug"
           sh "adb install -r -d app/build/outputs/apk/debug/app-debug.apk"

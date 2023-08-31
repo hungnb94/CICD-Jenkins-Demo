@@ -73,12 +73,12 @@ pipeline {
           filename 'Appium_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle"
+          args "-v $HOME/.gradle:/root/.gradle -v $HOME/Library/Caches/Yarn:/.cache/yarn"
         }
       }
       steps {
         sh "yarn cache dir"
-        sh "cd appiumTest && yarn install --frozen-lockfile && npm run test-ci-cd"
+        sh "cd appiumTest && yarn install --frozen-lockfile && yarn test-ci-cd"
       }
     }
 

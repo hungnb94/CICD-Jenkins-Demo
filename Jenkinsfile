@@ -72,7 +72,7 @@ pipeline {
           filename 'Appium_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle -v $HOME/.cache/yarn/v6:/usr/local/share/.cache/yarn/v6"
+          args "-v $HOME/.gradle:/root/.gradle -v $HOME/.cache/yarn:/.cache/yarn"
         }
       }
       steps {

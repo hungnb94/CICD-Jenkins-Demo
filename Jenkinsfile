@@ -66,14 +66,13 @@ pipeline {
     stage("Appium Test") {
       environment {
         ANDROID_ADB_SERVER_ADDRESS = "host.docker.internal"
-        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
       }
       agent {
         dockerfile {
           filename 'Appium_Dockerfile'
           dir 'cicd/androidsdk'
           reuseNode true
-          args "-v $HOME/.gradle:/root/.gradle -v $HOME/Library/Caches/Yarn:/.cache/yarn"
+          args "-v $HOME/.gradle:/root/.gradle"
         }
       }
       steps {

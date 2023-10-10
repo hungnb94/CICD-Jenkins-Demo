@@ -100,7 +100,7 @@ pipeline {
         }
         steps {
           withFolderProperties {
-            sh "./gradlew sonar -Dsonar.projectKey=${SONAR_PROJECT_KEY} -D.sonar.organization=${SONAR_ORGANIZATION} -Dsonar.projectName=${SONAR_PROJECT_NAME} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.token=${SONAR_TOKEN}"
+            sh "./gradlew sonar -Dsonar.projectKey=${SONAR_PROJECT_KEY} -Dsonar.projectName=${SONAR_PROJECT_NAME} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.token=${SONAR_TOKEN}"
           }
         }
     }

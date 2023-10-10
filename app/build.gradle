@@ -3,6 +3,7 @@ apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     compileSdkVersion 33
+    namespace 'com.example.test123'
     defaultConfig {
         applicationId "com.example.test123"
         minSdkVersion 18

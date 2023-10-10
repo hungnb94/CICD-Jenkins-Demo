@@ -84,6 +84,14 @@ pipeline {
     }
 
     stage("SonarQube") {
+        agent {
+            dockerfile {
+              filename 'SDK_Dockerfile'
+              dir 'cicd/androidsdk'
+              reuseNode true
+              args "-v $HOME/.gradle:/root/.gradle"
+            }
+        }
         when {
             branch 'master'
         }

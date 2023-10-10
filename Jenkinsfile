@@ -92,6 +92,9 @@ pipeline {
               args "-v $HOME/.gradle:/root/.gradle"
             }
         }
+        environment {
+            SONAR_TOKEN = credentials('SONAR_TOKEN')
+        }
         when {
             branch 'master'
         }

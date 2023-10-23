@@ -100,8 +100,21 @@ pipeline {
         }
         steps {
           withFolderProperties {
-            sh "./gradlew sonar -Dsonar.projectKey=${SONAR_PROJECT_KEY} -Dsonar.projectName=${SONAR_PROJECT_NAME} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.token=${SONAR_TOKEN}"
+            withSonarQubeEnv('sonar-server') {
+                sh "./gradlew sonar -Dsonar.projectKey=${SONAR_PROJECT_KEY} -Dsonar.projectName=${SONAR_PROJECT_NAME} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.token=${SONAR_TOKEN}"
+            }
           }
+        }
+    }
+
+    stage("Quality gate") {
+        when {
+            branch 'master'
+        }
+        steps {
+            script {
+                waitForQualityGate abortPipeline: true, credentialsId: 'SONAR_TOKEN'
+            }
         }
     }
 

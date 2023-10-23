@@ -83,7 +83,7 @@ pipeline {
       }
     }
 
-    stage("SonarQube") {
+    stage("SonarQube analysis") {
         agent {
             dockerfile {
               filename 'SDK_Dockerfile'

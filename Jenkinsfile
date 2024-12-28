@@ -57,9 +57,20 @@ pipeline {
         }
       }
       steps {
+      	script {
           sh "./gradlew assembleAndroidTest"
           sh "adb install -r -d app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-          sh "adb shell am instrument -w \"${APP_ID}.test/androidx.test.runner.AndroidJUnitRunner\""
+          def result = sh(
+			script: "adb shell am instrument -w ${APP_ID}.test/androidx.test.runner.AndroidJUnitRunner",
+			returnStdout: true
+		  ).trim()
+		  echo result
+		  if (result.contains("FAILURES")) {
+			error("Integration test failed")
+		  } else {
+			echo "Integration test passed"
+		  }
+      	}
       }
     }
 
